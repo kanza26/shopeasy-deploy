@@ -3,18 +3,18 @@
 Production-grade deployment configuration for the ShopEasy application on AWS EKS, using Infrastructure as Code, CI/CD, and GitOps.
 
 ```
-
 ## Tech Stack
 
-| Category | Technology |
-|----------|-----------|
-| Cloud | AWS (EKS, ECR, VPC, IAM) |
-| IaC | Terraform |
-| Orchestration | Kubernetes (EKS) |
-| CI/CD | GitHub Actions |
-| GitOps | Argo CD |
-| Config Management | Kustomize |
-| Security | Trivy, gitleaks |
+
+Cloud | AWS (EKS,ECR,VPC,IAM)
+IaC | Terraform
+IaC | Terraform
+CI/CD | GitHub Actions
+GitOps | Argo CD
+Config Management | Kustomize
+Security | Trivy, gitleaks
+
+
 
 ```
 
