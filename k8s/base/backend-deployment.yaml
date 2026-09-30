@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: 902685116131.dkr.ecr.ap-south-1.amazonaws.com/shopeasy-backend:b06e0b0c307a0c0318db412299a9cd2d471f6b75
+          image: 902685116131.dkr.ecr.ap-south-1.amazonaws.com/shopeasy-backend
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
