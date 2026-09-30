@@ -8,6 +8,6 @@ resources:
 
 images:
   - name: 902685116131.dkr.ecr.ap-south-1.amazonaws.com/shopeasy-backend
-    newTag: 864c505cbc7e83e189b79f4d6a3c596e86e94dd1
+    newTag: 08b29d18d958921078f7585655f794262fb41768
   - name: 902685116131.dkr.ecr.ap-south-1.amazonaws.com/shopeasy-frontend
-    newTag: 864c505cbc7e83e189b79f4d6a3c596e86e94dd1
+    newTag: 08b29d18d958921078f7585655f794262fb41768
