@@ -6,22 +6,18 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
   }
-
-  # State file S3 mein store karo (production mein zaroori)
-  # Abhi ke liye local state use kar rahe hain
-  # backend "s3" {
-  #   bucket = "shopeasy-terraform-state"
-  #   key    = "dev/terraform.tfstate"
-  #   region = "ap-south-1"
-  # }
 }
 
 provider "aws" {
   region = var.aws_region
 }
 
-# Backend ECR
+# ECR
 module "ecr_backend" {
   source = "../../modules/ecr"
 
@@ -34,11 +30,44 @@ module "ecr_backend" {
   }
 }
 
-# Frontend ECR
 module "ecr_frontend" {
   source = "../../modules/ecr"
 
   repository_name = "shopeasy-frontend"
+
+  tags = {
+    Environment = "dev"
+    Project     = "shopeasy"
+    ManagedBy   = "terraform"
+  }
+}
+
+# VPC
+module "vpc" {
+  source = "../../modules/vpc"
+
+  cluster_name = "shopeasy"
+  vpc_cidr     = "10.0.0.0/16"
+
+  tags = {
+    Environment = "dev"
+    Project     = "shopeasy"
+    ManagedBy   = "terraform"
+  }
+}
+
+# EKS
+module "eks" {
+  source = "../../modules/eks"
+
+  cluster_name       = "shopeasy"
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  instance_type = "t3.small"
+  desired_size  = 2
+  min_size      = 1
+  max_size      = 3
 
   tags = {
     Environment = "dev"
